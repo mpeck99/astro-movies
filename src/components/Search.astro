@@ -1,0 +1,40 @@
+---
+const { targetId, placeholder = "Search movies..." } = Astro.props;
+---
+
+<div class="search-container" id="search-component">
+  <input type="text" placeholder={placeholder} id="searchInput" />
+  <button id="searchBtn">Search</button>
+  <button id="clearBtn">Clear</button>
+</div>
+
+<script type="module" client:load>
+  const container = document.getElementById("search-component");
+  const target = document.getElementById("movie-grid"); // match your section ID
+
+  if (!target) {
+    console.error("Movie grid not found!");
+  }
+
+  const input = container.querySelector("#searchInput");
+  const btn = container.querySelector("#searchBtn");
+  const clear = container.querySelector("#clearBtn");
+
+  btn.addEventListener("click", () => {
+    const query = input.value.toLowerCase();
+    const cards = target.querySelectorAll(".movie-card");
+
+    cards.forEach((card) => {
+      const title = card.dataset.title?.toLowerCase() || "";
+      const genre = card.dataset.genre?.toLowerCase() || "";
+      card.style.display =
+        title.includes(query) || genre.includes(query) ? "" : "none";
+    });
+  });
+
+  clear.addEventListener("click", () => {
+    input.value = "";
+    const cards = target.querySelectorAll(".movie-card");
+    cards.forEach((card) => (card.style.display = ""));
+  });
+</script>

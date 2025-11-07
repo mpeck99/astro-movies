@@ -1,7 +1,13 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import movies from "../content/movies.json";
+import MovieCard from "../components/MovieCard.astro";
+import Search from "../components/Search.astro";
 ---
 
-<Layout>
-  <h1>Movies will be here soon</h1>
-</Layout>
+<Search targetId="movie-grid" placeholder="Search movies..." />
+
+<section id="movie-grid">
+  {movies.map((movie) => <MovieCard movie={movie} key={movie.id} />)}
+</section>
+
+<style lang="scss"></style>

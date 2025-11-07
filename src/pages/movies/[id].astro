@@ -1,0 +1,30 @@
+---
+import movies from "../../content/movies.json";
+
+export async function getStaticPaths() {
+  return movies.map((movie) => ({
+    params: { id: movie.id },
+  }));
+}
+
+const { id } = Astro.params;
+const movie = movies.find((m) => m.id === id);
+
+if (!movie) {
+  throw new Error("Movie not found");
+}
+---
+
+<article class="movie-detail">
+  <h1>{movie.title}</h1>
+  <img src={movie.backdrop_path} alt={movie.title} class="backdrop" />
+  <p><strong>Release Date:</strong> {movie.release_date}</p>
+  <p><strong>Genre:</strong> {movie.genre}</p>
+  <p>{movie.overview}</p>
+</article>
+
+<style lang="scss">
+  img {
+    max-width: 10rem;
+  }
+</style>
