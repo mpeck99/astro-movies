@@ -1,0 +1,17 @@
+{
+  "name": "movies",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.15.4",
+    "dotenv": "^17.2.3",
+    "google-spreadsheet": "^5.0.2",
+    "node-fetch": "^3.3.2"
+  }
+}
