@@ -1,13 +1,43 @@
 ---
 import movies from "../content/movies.json";
 import MovieCard from "../components/MovieCard.astro";
-import Search from "../components/Search.astro";
+import Banner from "../components/HeroBanner.astro";
+import "../assets/css/global.scss";
 ---
 
-<Search targetId="movie-grid" placeholder="Search movies..." />
+<main id="main-content">
+  <div class="inner">
+    <Banner heading="Movies" content="My personal movies" />
+    <section id="movie-grid">
+      {movies.map((movie) => <MovieCard movie={movie} key={movie.id} />)}
+    </section>
+  </div>
+</main>
 
-<section id="movie-grid">
-  {movies.map((movie) => <MovieCard movie={movie} key={movie.id} />)}
-</section>
+<style lang="scss" global>
+  #main-content {
+    width: 100%;
+    overflow-x: hidden;
+  }
 
-<style lang="scss"></style>
+  #main-content {
+    display: flex;
+    justify-content: center;
+  }
+
+  .inner {
+    max-width: 1440px;
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  #movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+</style>

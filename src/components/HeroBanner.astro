@@ -1,0 +1,24 @@
+---
+import Search from "./Search.astro";
+
+const { heading, content } = Astro.props;
+---
+
+<div class="hero-banner">
+  <div class="inner">
+    <h1>{heading}</h1>
+    <p>{content}</p>
+    <Search targetId="movie-grid" placeholder="Search movies..." />
+  </div>
+</div>
+<style lang="scss">
+  .hero-banner {
+    width: 100vw;
+
+    .inner {
+      max-width: 1200px;
+
+      margin: 0 auto;
+    }
+  }
+</style>

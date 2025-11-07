@@ -13,6 +13,58 @@ const { movie } = Astro.props;
 
 <style lang="scss">
   .movie-poster {
-    max-width: 10rem;
+    .movie-card {
+      $colors: (
+        #00b597,
+        #00a08f,
+        #813ae3,
+        #a174e0,
+        #ff73b8,
+        #ff91c2,
+        #f5c518,
+        #ffd54f,
+        #ff9800,
+        #ffc56d,
+        #5bb41b,
+        #65c41c
+      );
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 0.75rem;
+        transition: box-shadow 0.3s ease;
+      }
+
+      @for $i from 1 through length($colors) {
+        &:nth-child(#{$i}):hover img,
+        &:nth-child(#{$i}):focus img {
+          $color: nth($colors, $i);
+          box-shadow:
+            0 0 6px $color,
+            0 0 12px lighten($color, 20%);
+        }
+      }
+    }
+
+    $colors: (#813ae3, #ff73b8, #f5c518, #65c41c);
+
+    width: 100%;
+    height: auto;
+
+    border-radius: 0.75rem;
+    box-shadow: var(--box-shadow);
+
+    transition: box-shadow 0.3s ease;
+
+    @for $i from 1 through length($colors) {
+      &:nth-child(#{$i}):hover,
+      &:nth-child(#{$i}):focus {
+        $color: nth($colors, $i);
+        box-shadow:
+          0 0 8px $color,
+          0 0 12px lighten($color, 20%);
+      }
+    }
   }
 </style>
